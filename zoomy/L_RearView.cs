@@ -46,11 +46,10 @@ namespace zoomy
         {
             if (Settings.HackEnabled && Settings.RearViewEnabled)
             {
-                return;
+                GUI.color = new Color(1f, 1f, 1f, 0f);
+                menu = GUILayout.Window(WID.RearCam, menu, DoMenu, "Rear View");
+                GUI.color = Color.white;
             }
-            GUI.color = new Color(1f, 1f, 1f, 0f);
-            menu = GUILayout.Window(WID.RearCam, menu, DoMenu, "Rear View");
-            GUI.color = Color.white;
         }
 
         void DoMenu(int windowID)

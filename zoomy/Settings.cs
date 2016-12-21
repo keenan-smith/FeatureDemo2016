@@ -8,7 +8,7 @@ namespace zoomy
 {
     public static class Settings
     {
-        public static bool HackEnabled { get; set; } = false;
+        public static bool HackEnabled { get; set; } = true;
         public static bool InMenu { get; set; } = false;
 
         // Radar Settings
