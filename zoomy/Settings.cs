@@ -14,6 +14,7 @@ namespace zoomy
         // Radar Settings
         public static bool InRadarMenu { get; set; } = false;
         public static bool RadarEnabled { get; set; } = false;
+        public static bool RadarStatic { get; set; } = true;
         public static int RadarRefreshRate { get; set; } = 10;
         public static int RadarRange { get; set; } = 60;
 
@@ -23,5 +24,6 @@ namespace zoomy
     {
         public static int MainMenu = 0;
         public static int RadarMenu = 1;
+        public static int Radar = 2;
     }
 }
