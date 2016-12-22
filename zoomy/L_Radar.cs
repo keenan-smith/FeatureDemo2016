@@ -24,8 +24,11 @@ namespace zoomy
         List<int> s_x = new List<int>();
         List<int> s_z = new List<int>();
         Rect Radar = new Rect(Screen.width - 350, 10, 300, 300);
-        GameObject lp = Utils.getLocalPlayer().gameObject;
-        Camera cam = Camera.main;
+
+        void Start()
+        {
+            GameObject lp = Utils.getLocalPlayer().gameObject;
+        }
 
         void OnGUI()
         {
@@ -47,7 +50,7 @@ namespace zoomy
                 lastRendTime = DateTime.Now;
             }
 
-            for (int i = 0; i < g_player.Count; i++)
+            for (int i = 0; i < s_x.Count; i++)
             {
                 EditorGUITools.DrawRect(new Rect(s_x[i], s_z[i], (300 / Settings.RadarRange), (300 / Settings.RadarRange)), Color.red);
             }
@@ -60,7 +63,7 @@ namespace zoomy
                     otri1 = GetOffsetFromCenter(tri1);
                     otri2 = GetOffsetFromCenter(tri2);
                     otri3 = GetOffsetFromCenter(tri3);
-                    double angle_y = Math.Round(cam.transform.eulerAngles.y, 2);
+                    double angle_y = Math.Round(MainCamera.instance.transform.eulerAngles.y, 2);
                     ntri1 = Utils.RotatePoint(otri1, CenterOffset, angle_y);
                     ntri2 = Utils.RotatePoint(otri2, CenterOffset, angle_y);
                     ntri3 = Utils.RotatePoint(otri3, CenterOffset, angle_y);
@@ -89,8 +92,8 @@ namespace zoomy
 
         void GetRadarPlayers()
         {
+            GameObject lp = Utils.getLocalPlayer().gameObject;
             players = Provider.clients.ToArray();
-            g_player.Clear();
             s_x.Clear();
             s_z.Clear();
             for (int i = 0; i < players.Length; i++)
@@ -98,37 +101,29 @@ namespace zoomy
                 if (players[i] != null && players[i].player != null && players[i].player.gameObject != null && players[i].player != Utils.getLocalPlayer())
                 {
                     GameObject g = players[i].player.gameObject;
-
-                    Camera cam = Camera.main;
+                    
 
                     float dist = (float)Math.Round(Utils.getDistance2D(g.transform.position), 0);
                     if (dist <= 150)
                     {
-                        g_player.Add(g);
+                        int radius = (int)Utils.getDistance2D(g.transform.position);
+                        angley = (float)Math.Round(MainCamera.instance.transform.eulerAngles.y, 2);
+                        float o_x = (lp.transform.position.x - g.transform.position.x) * (150 / Settings.RadarRange);
+                        float o_z = (lp.transform.position.z - g.transform.position.z) * (150 / Settings.RadarRange);
+                        Vector2 newpoints = Utils.RotatePoint(new Vector2(o_x, o_z), new Vector2(0, 0), (double)angley);
+
+                        if (Settings.RadarStatic)
+                        {
+                            s_x.Add((int)(-1 * o_x) + 150);
+                            s_z.Add((int)(o_z) + 150);
+                        }
+                        else
+                        {
+                            s_x.Add((int)(newpoints.x) + 150);
+                            s_z.Add((int)(newpoints.y) + 150);
+                        }
                     }
                 }
-            }
-            for (int i = 0; i < g_player.Count; i++)
-            {
-                GameObject g = g_player[i];
-                int radius = (int)Utils.getDistance2D(g.transform.position);
-                angley = (float)Math.Round(cam.transform.eulerAngles.y, 2);
-                float o_x = (lp.transform.position.x - g.transform.position.x) * (150 / Settings.RadarRange);
-                float o_z = (lp.transform.position.z - g.transform.position.z) * (150 / Settings.RadarRange);
-
-                Vector2 newpoints = Utils.RotatePoint(new Vector2(o_x, o_z), new Vector2(0, 0), (double)angley);
-
-                if (Settings.RadarStatic)
-                {
-                    s_x.Add((int)(-1 * o_x) + 150);
-                    s_z.Add((int)(o_z) + 150);
-                }
-                else
-                {
-                    s_x.Add((int)(newpoints.x) + 150);
-                    s_z.Add((int)(newpoints.y) + 150);
-                }
-
             }
         }
     }

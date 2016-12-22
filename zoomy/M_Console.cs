@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Steamworks;
+using SDG.Unturned;
 
 namespace zoomy
 {
@@ -76,6 +78,19 @@ namespace zoomy
             {
                 Settings.InConsoleMenu = false;
             }
+            /*
+            if (GUILayout.Button("List Player GameObjects"))
+            {
+                SteamPlayer[] players = Provider.clients.ToArray();
+                for (int i = 0; i < players.Length; i++)
+                {
+                    if (players[i] != null && players[i].player != null && players[i].player.gameObject != null && players[i].player != Utils.getLocalPlayer())
+                    {
+                        GameObject g = players[i].player.gameObject;
+                        console.log(g.name);
+                    }
+                }
+            }*/
             if (!handleClicked)
             {
                 GUI.DragWindow();

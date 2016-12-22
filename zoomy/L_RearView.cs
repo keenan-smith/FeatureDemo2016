@@ -11,24 +11,9 @@ namespace zoomy
     public class L_RearView : MonoBehaviour
     {
         Rect menu = new Rect(1075, 10, Screen.width / 4, Screen.height / 4);
-        GameObject cam_obj = new GameObject();
+        GameObject cam_obj;
         Camera subCam;
-
-        void Start()
-        {
-            subCam = cam_obj.AddComponent<Camera>();
-            cam_obj.AddComponent<GUILayer>();
-            cam_obj.transform.position = MainCamera.instance.gameObject.transform.position;
-            cam_obj.transform.rotation = MainCamera.instance.gameObject.transform.rotation;
-            cam_obj.transform.Rotate(0, 180, 0);
-            subCam.transform.SetParent(Camera.main.transform, true);
-            subCam.layerCullDistances = MainCamera.instance.layerCullDistances;
-            subCam.layerCullSpherical = MainCamera.instance.layerCullSpherical;
-            subCam.tag = "MainCamera";
-            subCam.enabled = true;
-            subCam.rect = new Rect(0.6f, 0.6f, 0.4f, 0.4f);
-            subCam.depth = 99;
-        }
+        
 
         void Update()
         {
@@ -54,11 +39,32 @@ namespace zoomy
 
         void DoMenu(int windowID)
         {
+            if (cam_obj == null || subCam == null)
+            {
+                cam_obj = new GameObject();
+                subCam = cam_obj.AddComponent<Camera>();
+                cam_obj.AddComponent<GUILayer>();
+                cam_obj.transform.position = MainCamera.instance.gameObject.transform.position;
+                cam_obj.transform.rotation = MainCamera.instance.gameObject.transform.rotation;
+                cam_obj.transform.Rotate(0, 180, 0);
+                subCam.transform.SetParent(Camera.main.transform, true);
+                subCam.layerCullDistances = MainCamera.instance.layerCullDistances;
+                subCam.layerCullSpherical = MainCamera.instance.layerCullSpherical;
+                subCam.tag = "MainCamera";
+                subCam.enabled = true;
+                subCam.rect = new Rect(0.6f, 0.6f, 0.4f, 0.4f);
+                subCam.depth = 99;
+            }
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             GUILayout.Label("Rear View Camera");
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
+
+            if (subCam == null)
+            {
+                console.log("Null!");
+            }
 
             float x, y, w, h;
             x = (menu.x + 5) / Screen.width;
@@ -67,7 +73,9 @@ namespace zoomy
             h = (menu.height - 10) / Screen.height;
             y = 1 - y;
             y -= h;
+            console.log("1");
             subCam.rect = new Rect(x, y, w, h);
+            console.log("2");
 
             EditorGUITools.DrawRect(new Rect(0, 0, menu.width, 5), Color.black);
             EditorGUITools.DrawRect(new Rect(0, 0, 5, menu.height), Color.black);
