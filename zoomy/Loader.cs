@@ -7,17 +7,17 @@ namespace zoomy
 {
     public class Loader : MonoBehaviour
     {
-        public static Thread thr;
+        public static Thread thr = null;
         public static GameObject HookObject = null;
-        public static M_Main MainMenu;
-        public static M_Radar MenuRadar;
-        public static L_Radar LibRadar;
-        public static M_RearView MenuRearView;
-        public static L_RearView LibRearView;
+        public static M_Main MainMenu = null;
+        public static M_Radar MenuRadar = null;
+        public static L_Radar LibRadar = null;
+        public static M_RearView MenuRearView = null;
+        public static L_RearView LibRearView = null;
+        public static M_Console Console = null;
 
         public static void StartThread()
         {
-            //Loom.Initialize();
             thr = new Thread(new ThreadStart(Hook));
             thr.Start();
         }
@@ -27,7 +27,7 @@ namespace zoomy
             while (true)
             {
                 Thread.Sleep(1000);
-                if (HookObject == null || MainMenu == null)
+                if (HookObject == null)
                 {
                     HookObject = new GameObject();
                     MainMenu = HookObject.AddComponent<M_Main>();
@@ -37,11 +37,13 @@ namespace zoomy
                     LibRadar = HookObject.AddComponent<L_Radar>();
                     MenuRearView = HookObject.AddComponent<M_RearView>();
                     LibRearView = HookObject.AddComponent<L_RearView>();
+                    Console = HookObject.AddComponent<M_Console>();
 
                     DontDestroyOnLoad(MenuRadar);
                     DontDestroyOnLoad(LibRadar);
                     DontDestroyOnLoad(MenuRearView);
                     DontDestroyOnLoad(LibRearView);
+                    DontDestroyOnLoad(Console);
                 }
                 Thread.Sleep(5000);
             }

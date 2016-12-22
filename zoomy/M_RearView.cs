@@ -12,7 +12,7 @@ namespace zoomy
         Rect menu = new Rect(0, 0, 200, 200);
         Vector2 sp;
         
-        void OnGui()
+        void OnGUI()
         {
             if (Settings.HackEnabled && Settings.InMenu && Settings.InRearViewMenu)
             {

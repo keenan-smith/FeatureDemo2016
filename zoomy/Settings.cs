@@ -21,6 +21,10 @@ namespace zoomy
         // Rear View Settings
         public static bool InRearViewMenu { get; set; } = false;
         public static bool RearViewEnabled { get; set; } = false;
+
+        // Console Settings
+        public static bool InConsoleMenu { get; set; } = false;
+        public static List<string> logtext = new List<string>();
     }
     public static class WID
     {
@@ -29,5 +33,6 @@ namespace zoomy
         public static int Radar = 2;
         public static int RearViewMenu = 3;
         public static int RearCam = 4;
+        public static int ConsoleMenu = 5;
     }
 }

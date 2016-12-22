@@ -27,7 +27,7 @@ namespace zoomy
         GameObject lp = Utils.getLocalPlayer().gameObject;
         Camera cam = Camera.main;
 
-        void OnGui()
+        void OnGUI()
         {
             if (Settings.HackEnabled && Settings.RadarEnabled)
             {

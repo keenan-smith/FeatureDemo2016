@@ -14,6 +14,7 @@ namespace zoomy
             {
                 menu = GUILayout.Window(WID.MainMenu, menu, DoMenu, "Hack by IC3 + Zoomy");
             }
+
         }
         void DoMenu(int windowID)
         {
@@ -25,6 +26,10 @@ namespace zoomy
             if (GUILayout.Button("Rear Camera Menu"))
             {
                 Settings.InRearViewMenu = true;
+            }
+            if (GUILayout.Button("Console"))
+            {
+                Settings.InConsoleMenu = true;
             }
 
             GUILayout.EndScrollView();

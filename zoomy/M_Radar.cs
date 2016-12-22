@@ -10,7 +10,7 @@ namespace zoomy
 
         Vector2 sp;
 
-        void OnGui()
+        void OnGUI()
         {
             if (Settings.HackEnabled && Settings.InMenu && Settings.InRadarMenu)
             {

@@ -52,6 +52,7 @@
     <Compile Include="Loader.cs" />
     <Compile Include="L_ESP.cs" />
     <Compile Include="L_Radar.cs" />
+    <Compile Include="M_Console.cs" />
     <Compile Include="M_ESP.cs" />
     <Compile Include="M_Main.cs" />
     <Compile Include="M_Radar.cs" />
