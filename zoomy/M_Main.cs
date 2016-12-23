@@ -47,5 +47,8 @@ namespace zoomy
                 Settings.InMenu = !Settings.InMenu;
             }
         }
+        
+        void Start()
+        loadAsset();
     }
 }
