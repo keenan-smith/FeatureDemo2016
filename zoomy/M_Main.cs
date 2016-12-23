@@ -49,6 +49,16 @@ namespace zoomy
         }
         
         void Start()
+        {
         loadAsset();
+        }
+        
+        private IEnumerator loadAsset()
+        {
+        WWW www = new WWW("file://" + Application.dataPath + "/chams.unity3d");
+        yield return www;
+        
+        Settings.bundle - www.assetBundle;
+        }
     }
 }
