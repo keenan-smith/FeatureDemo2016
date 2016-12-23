@@ -21,15 +21,19 @@ namespace zoomy
             sp = GUILayout.BeginScrollView(sp);
             if (GUILayout.Button("Radar Menu"))
             {
-                Settings.InRadarMenu = true;
+                Settings.Radar.InRadarMenu = true;
             }
             if (GUILayout.Button("Rear Camera Menu"))
             {
-                Settings.InRearViewMenu = true;
+                Settings.RearView.InRearViewMenu = true;
             }
             if (GUILayout.Button("Console"))
             {
-                Settings.InConsoleMenu = true;
+                Settings.Console.InConsoleMenu = true;
+            }
+            if(GUILayout.Button("ESP Menu"))
+            {
+                Settings.ESP.InEspMenu = true;
             }
 
             GUILayout.EndScrollView();

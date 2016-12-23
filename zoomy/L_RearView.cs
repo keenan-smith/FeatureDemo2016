@@ -17,7 +17,7 @@ namespace zoomy
 
         void Update()
         {
-            if (Settings.HackEnabled && Settings.RearViewEnabled)
+            if (Settings.HackEnabled && Settings.RearView.RearViewEnabled)
             {
                 subCam.enabled = true;
             }
@@ -29,7 +29,7 @@ namespace zoomy
 
         void OnGUI()
         {
-            if (Settings.HackEnabled && Settings.RearViewEnabled)
+            if (Settings.HackEnabled && Settings.RearView.RearViewEnabled)
             {
                 GUI.color = new Color(1f, 1f, 1f, 0f);
                 menu = GUILayout.Window(WID.RearCam, menu, DoMenu, "Rear View");

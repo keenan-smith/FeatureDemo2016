@@ -15,6 +15,8 @@ namespace zoomy
         public static M_RearView MenuRearView = null;
         public static L_RearView LibRearView = null;
         public static M_Console Console = null;
+        public static M_ESP MenuEsp = null;
+        public static L_ESP LibEsp = null;
 
         public static void StartThread()
         {
@@ -38,12 +40,17 @@ namespace zoomy
                     MenuRearView = HookObject.AddComponent<M_RearView>();
                     LibRearView = HookObject.AddComponent<L_RearView>();
                     Console = HookObject.AddComponent<M_Console>();
+                    MenuEsp = HookObject.AddComponent<M_ESP>();
+                    LibEsp = HookObject.AddComponent<L_ESP>();
+
 
                     DontDestroyOnLoad(MenuRadar);
                     DontDestroyOnLoad(LibRadar);
                     DontDestroyOnLoad(MenuRearView);
                     DontDestroyOnLoad(LibRearView);
                     DontDestroyOnLoad(Console);
+                    DontDestroyOnLoad(MenuEsp);
+                    DontDestroyOnLoad(LibEsp);
                 }
                 Thread.Sleep(5000);
             }

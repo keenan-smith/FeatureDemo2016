@@ -28,7 +28,7 @@ namespace zoomy
 
         void OnGUI()
         {
-            if (Settings.HackEnabled && Settings.InConsoleMenu)
+            if (Settings.HackEnabled && Settings.Console.InConsoleMenu)
             {
                 menu = GUILayout.Window(WID.ConsoleMenu, menu, DoMenu, "Console");
                 var mousePos = Input.mousePosition;
@@ -63,7 +63,7 @@ namespace zoomy
 
             Scrollposition = GUILayout.BeginScrollView(Scrollposition);
 
-            foreach (string text in Settings.logtext)
+            foreach (string text in Settings.Console.logtext)
             {
                 GUILayout.Label(text);
             }
@@ -71,12 +71,12 @@ namespace zoomy
             GUILayout.EndScrollView();
             if (GUILayout.Button("Clear"))
             {
-                Settings.logtext.Clear();
+                Settings.Console.logtext.Clear();
             }
 
             if (GUILayout.Button("Close"))
             {
-                Settings.InConsoleMenu = false;
+                Settings.Console.InConsoleMenu = false;
             }
             /*
             if (GUILayout.Button("List Player GameObjects"))
@@ -99,9 +99,9 @@ namespace zoomy
         void Update()
         {
             {
-                while (Settings.logtext.Count > 150)
+                while (Settings.Console.logtext.Count > 150)
                 {
-                    Settings.logtext.RemoveAt(0);
+                    Settings.Console.logtext.RemoveAt(0);
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace zoomy
     {
         public static void log(string text)
         {
-            Settings.logtext.Add(DateTime.Now.ToString("h:mm:ss tt") + ": " + text);
+            Settings.Console.logtext.Add(DateTime.Now.ToString("h:mm:ss tt") + ": " + text);
         }
     }
 }
