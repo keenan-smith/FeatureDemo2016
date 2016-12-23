@@ -11,6 +11,7 @@ namespace zoomy
         public static bool HackEnabled { get; set; } = true;
         public static bool InMenu { get; set; } = false;
         public static AssetBundle bundle { get; set; } = null;
+        public static Shader[] shaders { get; set; }
 
         // Radar Settings
         public static class Radar
