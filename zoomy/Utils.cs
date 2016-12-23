@@ -65,6 +65,25 @@ namespace zoomy
             DrawLine(p3, p4, color, width);
             DrawLine(p4, p1, color, width);
         }
+
+        public static void DrawHBox3D(Vector3[] pts, Color color, float width)
+        {
+            DrawLine(pts[0], pts[2], color, width);
+            DrawLine(pts[2], pts[6], color, width);
+            DrawLine(pts[6], pts[4], color, width);
+            DrawLine(pts[4], pts[0], color, width);
+
+            DrawLine(pts[1], pts[5], color, width);
+            DrawLine(pts[5], pts[3], color, width);
+            DrawLine(pts[3], pts[7], color, width);
+            DrawLine(pts[7], pts[1], color, width);
+
+            DrawLine(pts[0], pts[3], color, width);
+            DrawLine(pts[1], pts[6], color, width);
+            DrawLine(pts[2], pts[5], color, width);
+            DrawLine(pts[4], pts[7], color, width);
+        }
+
         public static bool noWall(Transform ver, float distance = Mathf.Infinity)
         {
             return !Physics.Linecast(Camera.main.transform.position, ver.transform.position, RayMasks.DAMAGE_CLIENT);
