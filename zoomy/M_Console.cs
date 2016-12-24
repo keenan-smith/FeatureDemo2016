@@ -78,8 +78,8 @@ namespace zoomy
             {
                 Settings.Console.InConsoleMenu = false;
             }
-            /*
-            if (GUILayout.Button("List Player GameObjects"))
+            
+            if (GUILayout.Button("List Renderers"))
             {
                 SteamPlayer[] players = Provider.clients.ToArray();
                 for (int i = 0; i < players.Length; i++)
@@ -87,10 +87,19 @@ namespace zoomy
                     if (players[i] != null && players[i].player != null && players[i].player.gameObject != null && players[i].player != Utils.getLocalPlayer())
                     {
                         GameObject g = players[i].player.gameObject;
-                        console.log(g.name);
+
+                        Renderer[] renderers = g.GetComponentsInChildren<Renderer>();
+
+                        foreach(Renderer renderer in renderers)
+                        {
+                            foreach (Material material in renderer.materials)
+                            {
+                                material.shader = Settings.shaders[0];
+                            }
+                        }
                     }
                 }
-            }*/
+            }
             if (!handleClicked)
             {
                 GUI.DragWindow();
@@ -99,7 +108,7 @@ namespace zoomy
         void Update()
         {
             {
-                while (Settings.Console.logtext.Count > 150)
+                while (Settings.Console.logtext.Count > 1000)
                 {
                     Settings.Console.logtext.RemoveAt(0);
                 }

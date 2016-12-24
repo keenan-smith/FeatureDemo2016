@@ -56,30 +56,12 @@ namespace zoomy
 
                                 Vector3[] pts = new Vector3[8];
 
-                                pts[0] = b_spine.min;
-                                pts[1] = b_spine.max;
-                                pts[2] = new Vector3(pts[0].x, pts[0].y, pts[1].z);
-                                pts[3] = new Vector3(pts[0].x, pts[1].y, pts[0].z);
-                                pts[4] = new Vector3(pts[1].x, pts[0].y, pts[0].z);
-                                pts[5] = new Vector3(pts[0].x, pts[1].y, pts[1].z);
-                                pts[6] = new Vector3(pts[1].x, pts[0].y, pts[1].z);
-                                pts[7] = new Vector3(pts[1].x, pts[1].y, pts[0].z);
+                                pts[0] = new Vector3(b_spine.center.x + b_spine.extents.x, b_spine.center.y + b_spine.extents.y, b_spine.center.z + b_spine.extents.z);
 
-                                if (cam.WorldToScreenPoint(pts[0]).z > 0 && cam.WorldToScreenPoint(pts[1]).z > 0 && cam.WorldToScreenPoint(pts[2]).z > 0 && cam.WorldToScreenPoint(pts[3]).z > 0 && cam.WorldToScreenPoint(pts[4]).z > 0 && cam.WorldToScreenPoint(pts[5]).z > 0 && cam.WorldToScreenPoint(pts[6]).z > 0 && cam.WorldToScreenPoint(pts[7]).z > 0)
+                                if (cam.WorldToScreenPoint(pts[0]).z > 0)
                                 {
                                     Vector3[] pts2D = new Vector3[8];
                                     
-
-
-                                    pts2D[0] = cam.WorldToScreenPoint(pts[0]);
-                                    pts2D[1] = cam.WorldToScreenPoint(pts[1]);
-                                    pts2D[2] = cam.WorldToScreenPoint(pts[2]);
-                                    pts2D[3] = cam.WorldToScreenPoint(pts[3]);
-                                    pts2D[4] = cam.WorldToScreenPoint(pts[4]);
-                                    pts2D[5] = cam.WorldToScreenPoint(pts[5]);
-                                    pts2D[6] = cam.WorldToScreenPoint(pts[6]);
-                                    pts2D[7] = cam.WorldToScreenPoint(pts[7]);
-
 
 
                                     //Get them in GUI space

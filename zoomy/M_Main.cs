@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using SDG.Unturned;
+using System.Collections;
 
 namespace zoomy
 {
@@ -35,6 +36,12 @@ namespace zoomy
             {
                 Settings.ESP.InEspMenu = true;
             }
+            if (GUILayout.Button("List shaders!"))
+            {
+                L_Shaders.ListShaders();
+            }
+
+
 
             GUILayout.EndScrollView();
             GUI.DragWindow();
@@ -50,15 +57,19 @@ namespace zoomy
         
         void Start()
         {
-        loadAsset();
+            loadAsset();
+        }
+
+        void OnDestroy()
+        {
+            Settings.bundle.Unload(true);
         }
         
-        private IEnumerator loadAsset()
+        private void loadAsset()
         {
-        WWW www = new WWW("file://" + Application.dataPath + "/chams.unity3d");
-        yield return www;
-        
-        Settings.bundle - www.assetBundle;
+            Settings.bundle = AssetBundle.LoadFromFile(Application.dataPath + "/mat_chams.unity3d", 0U);
+            Settings.shaders = Settings.bundle.LoadAllAssets<Shader>();
+            Settings.materials = Settings.bundle.LoadAllAssets<Material>();
         }
     }
 }

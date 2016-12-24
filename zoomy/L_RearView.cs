@@ -61,11 +61,6 @@ namespace zoomy
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
 
-            if (subCam == null)
-            {
-                console.log("Null!");
-            }
-
             float x, y, w, h;
             x = (menu.x + 5) / Screen.width;
             y = (menu.y + 5) / Screen.height;
@@ -73,9 +68,7 @@ namespace zoomy
             h = (menu.height - 10) / Screen.height;
             y = 1 - y;
             y -= h;
-            console.log("1");
             subCam.rect = new Rect(x, y, w, h);
-            console.log("2");
 
             EditorGUITools.DrawRect(new Rect(0, 0, menu.width, 5), Color.black);
             EditorGUITools.DrawRect(new Rect(0, 0, 5, menu.height), Color.black);

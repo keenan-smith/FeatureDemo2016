@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace zoomy
 {
@@ -12,6 +13,7 @@ namespace zoomy
         public static bool InMenu { get; set; } = false;
         public static AssetBundle bundle { get; set; } = null;
         public static Shader[] shaders { get; set; }
+        public static Material[] materials { get; set; }
 
         // Radar Settings
         public static class Radar
