@@ -46,10 +46,10 @@ namespace zoomy
                 if (Settings.ESP.Show.Chams)
                 {
                     EnableChams();
-                    if (!ChamsEnabled)
-                    {
-                        ChamsEnabled = true;
-                    }
+                }
+                if (!Settings.ESP.Show.Chams)
+                {
+                    DisableChams();
                 }
             }
         }
@@ -64,6 +64,7 @@ namespace zoomy
 
                     Renderer[] renderers = g.GetComponentsInChildren<Renderer>();
 
+                
                     for (int j = 0; j < renderers.Length; j++)
                     {
                         Material[] materials = renderers[j].materials;
@@ -145,13 +146,18 @@ namespace zoomy
                         }
                     }
                 }
+                if (Settings.ESP.Show.Chams && !ChamsEnabled)
+                {
+                    EnableChams();
+                    ChamsEnabled = true;
+                }
             }
-            else
+            if (!Settings.HackEnabled || !Settings.ESP.EspEnabled)
             {
-                if(ChamsEnabled)
-                { 
-                DisableChams();
-                ChamsEnabled = false;
+                if (ChamsEnabled)
+                {
+                    DisableChams();
+                    ChamsEnabled = false;
                 }
             }
         }
@@ -193,11 +199,16 @@ namespace zoomy
             players = Provider.clients.ToArray();
             if (Settings.ESP.Show.Chams)
             {
-                EnableChams();
+                ChamsEnabled = true;
+                if (Settings.HackEnabled && Settings.ESP.EspEnabled)
+                {
+                    EnableChams();
+                }
             }
             else
             {
                 DisableChams();
+                ChamsEnabled = false;
             }
         }
     }
