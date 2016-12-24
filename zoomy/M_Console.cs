@@ -79,26 +79,13 @@ namespace zoomy
                 Settings.Console.InConsoleMenu = false;
             }
             
-            if (GUILayout.Button("List Renderers"))
+            if (GUILayout.Button("Attach Chams"))
             {
-                SteamPlayer[] players = Provider.clients.ToArray();
-                for (int i = 0; i < players.Length; i++)
+                foreach(Shader shader in Settings.ESP.backups_Asset)
                 {
-                    if (players[i] != null && players[i].player != null && players[i].player.gameObject != null && players[i].player != Utils.getLocalPlayer())
-                    {
-                        GameObject g = players[i].player.gameObject;
-
-                        Renderer[] renderers = g.GetComponentsInChildren<Renderer>();
-
-                        foreach(Renderer renderer in renderers)
-                        {
-                            foreach (Material material in renderer.materials)
-                            {
-                                material.shader = Settings.shaders[0];
-                            }
-                        }
-                    }
+                    console.log(" | " + shader.name);
                 }
+                    
             }
             if (!handleClicked)
             {
@@ -108,7 +95,7 @@ namespace zoomy
         void Update()
         {
             {
-                while (Settings.Console.logtext.Count > 1000)
+                while (Settings.Console.logtext.Count > 200)
                 {
                     Settings.Console.logtext.RemoveAt(0);
                 }

@@ -9,15 +9,6 @@ namespace zoomy
         public static void ListShaders()
         {
          
-            foreach(Shader shader in Settings.shaders)
-            {
-                console.log("Shader: " + shader.name);
-            }
-
-            foreach(Material material in Settings.materials)
-            {
-                console.log("Material: " + material.name);
-            }
         }
     }
 }

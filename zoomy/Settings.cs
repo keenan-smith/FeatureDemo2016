@@ -15,6 +15,7 @@ namespace zoomy
         public static Shader[] shaders { get; set; }
         public static Material[] materials { get; set; }
 
+
         // Radar Settings
         public static class Radar
         {
@@ -45,7 +46,9 @@ namespace zoomy
             public static bool InEspMenu { get; set; } = false;
             public static bool EspEnabled { get; set; } = false;
             public static int EspRefreshRate { get; set; } = 50;
+            public static int ChamRefreshRate { get; set; } = 10000;
             public static int EspRange { get; set; } = 1000;
+            public static List<Shader> backups_Asset = new List<Shader>();
             public static class Show
             {
                 public static bool InMenu { get; set; } = false;

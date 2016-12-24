@@ -12,6 +12,8 @@ namespace zoomy
         Vector2 sp;
         Vector2 spshow;
         Vector2 spglow;
+        L_ESP esp = new L_ESP();
+        string text;
 
         void OnGUI()
         {
@@ -64,8 +66,19 @@ namespace zoomy
             Settings.ESP.Show.Names = GUILayout.Toggle(Settings.ESP.Show.Names, "Names");
             Settings.ESP.Show.Distance = GUILayout.Toggle(Settings.ESP.Show.Distance, "Distance");
             Settings.ESP.Show.Boxes = GUILayout.Toggle(Settings.ESP.Show.Boxes, "Boxes");
-            Settings.ESP.Show.Chams = GUILayout.Toggle(Settings.ESP.Show.Chams, "Chams");
             Settings.ESP.Show.Glow = GUILayout.Toggle(Settings.ESP.Show.Glow, "Glow");
+            if (Settings.ESP.Show.Chams)
+            {
+                text = "On";
+            }
+            else
+            {
+                text = "Off";
+            }
+            if (GUILayout.Button("Chams: " + text))
+            {
+                esp.DoChams();
+            }
 
             GUILayout.EndScrollView();
             if (GUILayout.Button("Close"))

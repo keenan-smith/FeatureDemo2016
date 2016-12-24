@@ -36,10 +36,6 @@ namespace zoomy
             {
                 Settings.ESP.InEspMenu = true;
             }
-            if (GUILayout.Button("List shaders!"))
-            {
-                L_Shaders.ListShaders();
-            }
 
 
 
