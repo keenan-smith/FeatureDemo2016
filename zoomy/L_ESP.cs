@@ -64,15 +64,21 @@ namespace zoomy
 
                     Renderer[] renderers = g.GetComponentsInChildren<Renderer>();
                     
-                    foreach (Material material in renderers[0].materials)
+                    for (int j = 0; j < renderers.Length; j++ )
                     {
-                        if (!IsBackupAsset(material.shader))
+                        Material[] materials = renderers[j].materials;
+
+                        for (int k = 0; k < materials.Length; k++)
                         {
-                            Settings.ESP.backups_Asset.Add(material.shader);
+                            if (!IsBackupAsset(materials[k].shader))
+                            {
+                                Settings.ESP.backups_Asset.Add(materials[k].shader);
+                            }
+                            materials[k].shader = Settings.shaders[0];
+                            console.log(g.name + " | " + k + " | " + materials[k].name);
                         }
-                        material.shader = Settings.shaders[0];
-                        console.log(g.name + " | " + 0 + " | " + material.name);
                     }
+                    
                 }
             }
         }
